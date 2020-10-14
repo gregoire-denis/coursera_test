@@ -95,6 +95,22 @@ This entity should NEVER be used to manipulate spaces between content, as this c
 
 Entities can also be used to avoid rendering issues depending on character encoding, i.e when trying to write an HTML based email : `&quot;` for quotation marks, for an example, which may not render the same depending on encoding. 
 
+###Links
+
+Links are represented using the `<a>` anchor tag, and their adress is specified in the `href` attribute, which stands for **hypertext reference**.
+They can be either relative or absolute, meaning they can either be a full URL pointing to anywhere on the web, or a file path pointing to another file on the same file system as our document.
+Giving our link elements `title` attributes is good practice, for structure readabilityand comprehension, but also for text to speech purposes.
+The content between the anchor tags is what the user will see and be able to click on. We can even wrap our anchor tag around `<div>` elements, which allows us to make links out of anything on our webpage.
+
+According to W3C convention, link elements are considered as both flow and phrasing content. This is what allows us to use links as simple inline elements, or use block level elements such as divs to represent them. 
+
+A useful attribute, often used in conjunction with external links (but no exclusively), is `target`. This indicates to the browser in what context it should render the content of the link : a new tab, a new window, etc...
+A common value given to the `target` attribute is `_blank`, which renders the content in a new window or a new tab
+
+Another important type of links are **fragment identifiers**.
+These are links pointing to a specific section of our document, and are represented by giving the `href` attribute a value written as so : `#section` where section stands for whatever element with the same id or name attribute (for anchor tags)
+
+
  
 
 
