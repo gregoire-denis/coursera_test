@@ -440,7 +440,7 @@ It is therefore generally best practice to tailor the layout to fit the content.
 
 ### The background property
 
-[Course Example](examples/Lecture20/background-after.html)
+[Course Example]("examples/Lecture20/background-after.html")
 
 Looking at this example : 
 ```css
@@ -518,9 +518,9 @@ So in this case we either should declare `background-color` after `background`, 
 
 The background property can get pretty complex, and can be used for adjusting image size/resolution based on viewport size. 
 
-###Position elements by floating 
+### Position elements by floating 
 
-[Course Example]("examples/Lecture21/floating-after.html")
+[Course Example](examples/Lecture21/floating-after.html)
 
 ```html
 <h1>Floating Elements</h1>
@@ -588,4 +588,160 @@ We can also apply that to elements that are floating themselves:
 We now see our `#p3` placed itself under the first two `p` elements, along with the `#p4` element. 
 
 If we need to prevent elements from floating on either side of other elements, we can use the `clear` property and give it value of `both`. This prevents overlapping in case we have elements floating both left and right and we want to clear other elements from them. 
+
+### Relative and absolute element positioning
+[Course Examples]("examples/Lecture22/positioning-after.html")
+
+Contrary to floating positoning schemes, which disturb the normal flow of the document, relative and absolute positioning schemes do not. 
+
+**Static positioning** is the normal document flow, and is the default positioning for all elements in a web documents, except the `html` element itself. 
+If we apply offsets to elements which are static, they are ignored. 
+
+**Relative positioning** changes the positioning of the element **relative to its normal position in the document flow**.
+If we apply offsets to that element, they will be applied from the normal position of the element in the document. 
+The element is **not** taken out of the normal document flow, its original position is "reserved".
+
+The positioning offset properties are : `top`, `bottom`, `left`, `right`. 
+We can also use negative values for these properties. 
+
+**Absolute positioning:**	
+All offsets are relative to the position of the nearest ancestor which has positioning set on it, other than static.
+By default, `html` is the only element that has non static positioning set to it (relative).
+Unlike relative positioning, an element which has its position set to absolute is taken out of the normal document flow. 
+If a container element is offset, everything inside is offset with it
+
+## Introduction to responsive design
+
+### Media Queries
+[Course Examples]("examples/Lecture23/media-queries-after.html")
+
+Media queries allow us to group styles together and target them on devices, based on some criteria, i.e screen size, which is a very common criteria, because it can allow us to distinguish between a mobile device or a desktop browser. 
+
+**Syntax:**
+A media query starts with the `@media` keyword, a media feature, which resolves to either true or false, and curly braces which wrap around css styles: 
+
+```css
+@media (max-width: 767px) {
+	p {
+		color: blue;
+	}
+}
+```
+If the media feature resolves to true, the css it contains is applied.
+These are common media features, among the many available:
+```css
+@media (max-width:)
+@media (min-width:)
+@media (orientation: portrait)
+@media screen
+@media print
+```
+
+The W3C defines standard device sizes as such : 
+Extra Small devices (small phones) : 600px and under
+Small devices (phones, portrait tablets) : 600 px and up 
+Medium devices (landscape tablets) : 768 px and up
+Large devices (laptops/desktops with smaller screens) : 992 px and up 
+Extra Large devices (large laptops and desktops) : 1200px and up
+
+We can combine more than one media feature by using logical operators.
+```css
+@media (min-width: 768px) and (max-width: 991px) {}
+```
+The comma `,` is equivalent to the operator `or` in other languages
+```css
+@media (min-width: 768px) , (max-width: 991px) {}
+```
+Practically speaking, when approaching responsive design, the most common operator is the `and` operator. 
+
+When it comes to writing our stylesheets, it is recommended to start with the "base styles", and then append them with the media queries.
+When writing media queries, it is important not to overlap range boundaries.
+
+### Responsive layout
+
+A responsive website is designed to adapt its layout to the viewing environment by using fluid, proportion based grids, flexible images and media queries.
+The site's layout is supposed to adapt to the size of the device it's being viewed on. Therefore, content verbosity, or its visual delivery may vary depending on the viewport.
+
+The most common approach to a responsive layout is **a 12 column grid**, which is called a **framework**, specifically **bootstrap** with these proportions.
+We use 12 because of it's factorization : 12 is evenly divisible by 1,2,3,4,6, and 12 itself. This allows us to split our content into even, cleanly divided cells.
+So for example we can split our content into 4 columns, in 3 units of size, or 3 columns of 4, etc...
+
+To approximate the size of one column in the 12, we can simply divide 100 (the full width of the viewport) by 12, and get **8.33** approximately. 
+
+We are not limited to the viewport in this approach : each cell can be subdivided in 12 columns, it is simply a matter of proportions.
+
+If we combine these notions with media queries, we can tailor our website with different layouts depending on the device's screensize. 
+So for example, we could have a website which uses a 4x3 layout for our menu buttons when using a large device, and a 2x6 layout when using a medium device. 
+
+A useful tool to see how our layout responds to different screen sizes is within the Chrome Developer Tools, the Device Toolbar (CMD + SHIFT + M/ CTRL + SHIFT + M)
+
+Browsers will look to zoom out automatically on smaller devices, so they can try to fit the content in the viewport,  and we can prevent that using the `<meta>` tag : 
+
+```html
+<meta name="viewport" content="width=device-width initial-scale=1">
+```
+
+By doing so, the browser will consider the size of the viewport to be the size of the device, and the scale factor to be 1, meaning it won't scale anything up or down by itself.
+
+
+## Introduction to Twitter Bootstrap
+
+Bootstrap is the most popular HTML, CSS and JS framework for developing responsive, mobile first projects. 
+It provides premade CSS classes, but requires slight modifications to HTML, so that bootstrap can apply the CSS to these classes (adding divs here and there, and providing specific classes to our elements).
+Mobile first means we PLAN for mobile right from the start, and also means the CSS framework should be mobile ready. 
+
+Some claim there are disadvantages to using bootstrap:
+
+It can be too big, too bloated, because it has a LOT of features, many of which will never be used by our website. 
+We can use *selective download* on the bootstrap website to only obtain whichever feature we want to use for our project
+
+We can write our own framework, that's much more targeted and smaller in scale. 
+While that may be true, it is much longer (especially for beginners) to write, and slows our project down considerably.
+
+When downloading bootstrap, we get several folders, namely CSS, fonts, and JS, and a index.html file.
+These contain all the code used by bootstrap. We can note that the JS folder must contain a file named jquery. 
+This is a JS library, and the JS used by bootstrap is dependent on that library to function. So we must add that to our JS folder.
+
+If we look inside index.html, we can see that it links to both bootstrap.min.css, and styles.css. The first link is our boostrap framework, and the second one is the personalized styles we want to apply to our project. This file is, obviously empty before we write anything ourselves. 
+We declare bootstrap.min.css first because we want our styles.css to overwrite whatever is defined in bootstrap.min.css. 
+
+At the very end of the body tag, we declare some javascript files and libraries that we are going to depend on : 
+
+```html 
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/script.js"></script>
+```
+We declare these in this specific order because: bootstrap.min.js depends on jquery.X.min.js (X stands for whichever version of jquery we are working with), and script.js is declared last because it will use either the jquery or bootstrap files, or both.
+
+By default, our index.html page is blank. If we simply add a `<h1>` tag with some content, we can clearly see some differences with the default HTML settings right away. The font family is different, and the color of the text is slightly different as well (the black is less opaque and intense). 
+When inspecting the element, we see some styles defined by bootstrap have been applied.
+
+### The bootstrap grid system
+
+```html
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">Col 1</div>
+		...
+	</div>
+</div>
+```
+
+This is a snippet of html code complying to bootstrap's grid system structure. 
+We can see it does impose a bit of structure to our html code, but it is a structure we would need to write ourselves most of the time anyways.
+
+First of all, a bootstrap grid must always be inside a `container` class element, or `container-fluid` class element. 
+The `container-fluid` class stretches the grid to the full width of the browser, and adds consistent padding to the grid's content (15px by default). 
+The `container` class provides a fixed width that is still responsive to the width of the browser : it has a certain width for a breakpoint, another width for another breakpoint, etc.
+The content inside a `container`/`container-fluid` element isn't necessarily a grid, but the grid **must be placed inside a container element**.
+
+The `row` class creates horizontal groups of columns, which means that the columns collapse and interact with each other as a group.
+It also creates a negative margin to counteract the padding that the `container` class sets ups. This is done because each column has it's own padding, and if we didn't add negative margins and padding, the individual padding of the columns would add itself to the padding of the container.
+
+Every bootstrap `col` class (column) is defined using this template : 
+`col-SIZE-SPAN`
+The SIZE is a screen width range identifier : md for medium, lg for large, etc. Columns will collapse (**stack**) below that width, unless another rule applies.
+SPAN indicates how many columns the element should span, with values from 1 to 12. If we specifiy more than 12 rows to our element, the element that exceeds 12 will automatically wrap to the next line. 
+
 
