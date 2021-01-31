@@ -121,9 +121,11 @@ An `img` tag is an inline element.
 ### Aditionnal notes (to be reorganized)
 
 To specify a class for an element, we specify a `class` attribute, to which we attribute **one or several** values :
+
 ```html
 <p class="blue big"></p>
 ```
+
 Here, this `p` element belongs to both `blue` and `big` classes. The way we attribute several classes to the attribute is simply by appending a space to the first value, and so on. 
 
 

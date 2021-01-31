@@ -8,13 +8,16 @@ It is usually implemented in a separate document from the HTML file, the `<style
 
 To place a CSS stylesheet externally, we should place a `<link>` tag in our `<head>` element.
 The syntax looks like this : 
+
 ```html
 <head>
 <link rel="stylesheet", href="style.css">
 </link>
 </head>
 ```
-We can see that we specify to the browser that it's about to read a CSS stylesheet with the `rel=""` attribute/value pair (which applies to `<a>`, `<link>`, and `<area>` elements, and indicates a relationship between the current document and the provided resources, i.e this resource stylises this document, this resource is refering to the author of the document, this resource holds the license for the document, etc...).
+
+We can see that we specify to the browser that it's about to read a CSS stylesheet with the `rel=""` attribute/value pair (which applies to  
+`<a>`, `<link>`, and `<area>` elements, and indicates a relationship between the current document and the provided resources, i.e this resource stylises this document, this resource is refering to the author of the document, this resource holds the license for the document, etc...).
 We then provide the path to the stylesheet as we would with any link, using the `href=""` attribute/value pair. 
 
 
@@ -63,32 +66,42 @@ CSS allows us to use multiple selectors for declarations, i.e : `p, .blue, #name
 Selectors can also be combined with CSS, to allows for more control over which elements are targeted.
 
 **Element with class selector**: 
+
 ```css 
 p.big {font-size: 20px;}
 ```
+
 This targets every `p` element that belongs to the class `big`. **No space between the element and the class in the selector**
 This is useful when you have a class declaration, but want a slightly different styling for some elements of the same class.
 
 **Child selector**
+
 ```css
 article > p {color: blue;}
 ```
+
 These declarations are read from right to left : in this instance, every `p` element that is a **direct** child (directly branching from) of any `article` element.
 This isn't limited to element selectors : 
+
 ```css
 article > .big {color: blue;}
 ```
+
 This targets any element belonging to the `big` class that is a direct child of an `article` element
 
 **Descendant selector**
+
 ```css
 article p {color: blue;}
 ```
+
 This targets any `p` element that is nested **anywhere** inside an `article` element. **A space is required between both selectors**
 This isn't limited to element selectors : 
+
 ```css
 .big p {color: blue;}
 ```
+
 This targets any `p` element that is nested inside any element that belongs to the `big` class.
 
 ### Pseudo class selectors 
@@ -105,6 +118,7 @@ The reason for this is it isn't easy to style links with normal selectors, becau
 ```css
 a:link, a:visited {}
 ```
+
 Here, `a:link` targets the link in its normal state, and `a:visited` targets links that have been visited already by the user. This example lumps the two together, so there is no difference in style once you've clicked the links.
 Now, if we'd want some different styling upon hovering the links, and during the clicking (the state that occurs once the user clicks on the link, but hasn't released it yet) : 
 
@@ -119,7 +133,7 @@ li:nth-child(3) {}
 This targets the third element of a list element
 
 ```css
-li:nth-child(odd)
+li:nth-child(odd) {}
 ```
 This targets all odd elements of a list element
 
@@ -143,14 +157,18 @@ When two declarations are in conflict, i.e when they specify the same property f
 It's simple : **last declaration wins**, in other words, the declaration further down the document has precedence over the earlier ones. It overwrites precedent declaration of the same nature.
 
 No conflict: While there is no conflict, i.e when declarations have the same target, but don't specify the same properties, declarations **merge** : 
+
 ```css
 p:hover {background-color: red;}
 ```
 And 
+
 ```css
 p:hover {font-size: 24px;}
 ```
+
 These two declarations will be merged as one by the browser: 
+
 ```css
 p:hover {
 	background-color: red;
@@ -159,6 +177,7 @@ p:hover {
 ```
 
 Elements also inherit CSS declarations from their parent elements, which unless overwritten, will apply to all children elements of the parent targeted by the declaration : 
+
 ```css
 body {
 	color: blue;
@@ -174,9 +193,11 @@ In this example, all `p` elements that are children of the `body` element (which
 This concept, and the rule associated to it look simple : the most specific selector has precedence (wins).
 However, it is quite common to forget about this rule, and messes with the code. 
 To keep track of our specificity precedence, we can use a score based system, i.e : 
+
 ```html 
 <h2 style="color: green;"></h2>
 ```
+
 Here, we have an example of the most specific selector, and the "highest scoring", which is the `style=""` attribute/value pair. This is considered the most specific because it is like pointing directly at a very specific element. We are not targeting all h2 elements with this, we are targeting **this** h2 element , and this one only. 
 The second most specific selector is the ID selector.
 The third most specific selector is the class, or pseudo class.
@@ -210,34 +231,42 @@ There are a great many ways to stylise text in CSS.
 Here we will look at examples that illustrate the core concepts behind stylising text in CSS. 
 
 The `font-family` property allows us to set a specific font, and alternative fonts if the user doesn't have the specified font installed : 
+
 ```css
 .text {
 	font-family: "Times New Roman", Times, serif;
 }
 ```
+
 Is read from left to right : we would like the Times New Roman font, if not available then the Times font, and if not available a standard serif font. 
 
 The `color` property specifies the color of the text, with several types of values being allowed : 
+
 ```css 
 .text {
 	color: #0000ff
 }
 ```
+
 We can see we're using hexadecimal values, but we can also use RGB, and preset values : 
+
 ```css
 .text {
 	color: rgb(0,0,255);
 }
 ```
 And 
+
 ```css
 .text {
 	color: red;
 }
 ```
+
 Note: hexadecimal values are actually RGB values expressed as hexadecimal numbers : for `#0000ff` , the first 00 indicates the amount of red, the middle 00 the amount of green, and ff the amount of blue.
 
 The `font-style` property specifies whether we want our font to be normal, italic, or oblique (but generally normal or italic are sufficient)
+
 ```css
 .text {
 	font-style: italic
@@ -245,12 +274,14 @@ The `font-style` property specifies whether we want our font to be normal, itali
 ```
 
 The `font-weight` property specifices the thickness (the weight) of the font: it can be attributed values such as `normal`, `bold`, and numerical values.
+
 ```css
 .text {
 	font-weight: 300
 }
 ```
 or
+
 ```css
 .text {
 	font-weight: bold;
@@ -259,6 +290,7 @@ or
 In practice, people mostly use `normal` or `bold`.
 
 The `font-size` property specifies the size of the font:
+
 ```css
 .text {
 	font-size: 24px;
@@ -271,6 +303,7 @@ This property can be attributed values expressed in pixels, em, percentages, abs
 
 When using relative values, we are using values relative to the default size of the font, as defined in the parent element . These relative values, when used with subsequent elements, don't overwrite themselves, they allow a calculation based on the previous size that has been set.
 Values expressed in ems are basing the calculation relative to the *width of an m letter in current font*: 1 em is equivalent to the width of one letter m in the font we're using. 
+
 ```html
 <body style="font-size: 120%;">
 <p style="font-size": 2em;"">
@@ -282,6 +315,7 @@ In this example, the 120% value in the `body` element is relative to the parent 
 A common practice is to set the font size for the entire document using `%` or absolute values, and then setting specific font sizes within the document using em values.
 
 The `text-transform` property allows us to control how the text looks in some aspects, such as whether it should be capitalized, uppercased, lowercased:
+
 ```css
 .text {
 	text-transform: capitalize
@@ -289,6 +323,7 @@ The `text-transform` property allows us to control how the text looks in some as
 ```
 
 The `text-align` property allows us to control where the text should be positioned in the viewport, as in centered, left/right justified: 
+
 ```css
 .text {
 	text-align: center;
@@ -306,6 +341,7 @@ Besides the actual content, each box consists of : padding, border,	and margin.
 The Box Model refers to the components that make an HTML box, as well as the rules that govern how these box components affect the layout, and how width and height of the box are calculated.
 
 In this example : 
+
 ```html 
 <html>
 <head>
@@ -341,6 +377,7 @@ Since `div` elements are block level elements, they try to fill up the space in 
 But we can see that the `#box` div doesn't quite fill all the space in the parent `body` element.
 Although there isn't any spacing specified in the div, there is a default margin inherent to the `body`element, with a default value of 8px (this default setting is located in the **user agent stylesheet**, which is the default stylesheet for the browser).
 We can however *reset* these default values : 
+
 ```css
 body {
 	margin: 0;
@@ -363,6 +400,7 @@ We can now see our `#box` background color behind the `#content`.
 Note that padding syntax is as follows : `element {padding : top right bottom left}`, and if our padding is consistent between all sides, we can simply write it's value once, and it will be applied to all sides.
 
 Now if we want to give our box some border, and margins : 
+
 ```css
 #box {
 	background-color: blue;
@@ -374,6 +412,7 @@ Now if we want to give our box some border, and margins :
 Note that the margin here is written using the same shortcut as for the padding. We only write one value, which means we want a margin of this value on all sides.
 
 We can actually set the width of the element ourselves as well : 
+
 ```css
 #box {
 	background-color: blue;
@@ -390,6 +429,7 @@ We specified that we wanted our box to be 300px wide, but on closer inspection, 
 This is because by default, the `box-sizing` property is actually set to `content-box` value.
 We want to change that in most cases, for consistency and convenience.
 CSS3 offers a new value for this property, which is `border-box`.
+
 ```css
 #box {
 	background-color: blue;
@@ -443,6 +483,7 @@ It is therefore generally best practice to tailor the layout to fit the content.
 [Course Example]("examples/Lecture20/background-after.html")
 
 Looking at this example : 
+
 ```css
 #bg {
 	width: 500px;
@@ -559,6 +600,7 @@ p {
 ```
 
 If we append, for example, this declaration to `#p1` : 
+
 ```css
 #p1 {
 	background-color: #A52A2A
@@ -572,6 +614,7 @@ When it comes to floated elements and their margins, **they never collapse**.
 Because floated elements are taken out of the document flow, we see that the div surrounding our `p` elements is now smaller, since it is wrapping around the last element in the document flow, and ignores the floated elements.
 
 We can use the `clear` property to make sure our div wraps around both our `p` elements and our `section` element:
+
 ```css
 section {
 	clear: left;
@@ -579,6 +622,7 @@ section {
 ```
 By doing this, we indicate that no elements should be allowed to float to the left of our `section` element, so it will be placed under the floating elements (under because it follows normal flow).
 We can also apply that to elements that are floating themselves: 
+
 ```css
 #p3 {
   background-color: #5F9EA0;
@@ -629,12 +673,13 @@ A media query starts with the `@media` keyword, a media feature, which resolves 
 ```
 If the media feature resolves to true, the css it contains is applied.
 These are common media features, among the many available:
+
 ```css
-@media (max-width:)
-@media (min-width:)
-@media (orientation: portrait)
-@media screen
-@media print
+@media (max-width:) {}
+@media (min-width:) {}
+@media (orientation: portrait) {}
+@media screen {}
+@media print {}
 ```
 
 The W3C defines standard device sizes as such : 
@@ -645,10 +690,13 @@ Large devices (laptops/desktops with smaller screens) : 992 px and up
 Extra Large devices (large laptops and desktops) : 1200px and up
 
 We can combine more than one media feature by using logical operators.
+
 ```css
 @media (min-width: 768px) and (max-width: 991px) {}
 ```
+
 The comma `,` is equivalent to the operator `or` in other languages
+
 ```css
 @media (min-width: 768px) , (max-width: 991px) {}
 ```

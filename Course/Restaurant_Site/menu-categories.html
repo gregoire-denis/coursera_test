@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>David Chu's China Bistro</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <style type="text/css">
+
+    </style>
+  </head>
+<body>
+  <header>
+    <nav id="header-nav" class="navbar navbar-default">
+      <div class="container"> <!--No container-fluid, this would fill the entire screen-->
+        <div class="navbar-header"> 
+          
+          <a href="index.html" class="pull-left visible-md visible-lg"> 
+            <!--
+              pull-left class is basically float left, visible-md means it's only visible at medium, and visible-lg at large breakpoints 
+            -->
+            <div id="logo-img" alt="Logo image"></div>
+          </a>
+
+          <div class="navbar-brand">
+            <a href="index.html"><h1>David Chu's China Bistro</h1></a>
+            <p>
+              <img src="images/star-k-logo.png" alt="Kosher certification">
+              <span>Kosher Certified</span>
+            </p>
+          </div>
+        
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+          <!--
+            navbar-toggle is controlling the positioning of the whole button and some of the styling.
+            This, by default in bootstrap, will only toggle (display) BELOW a certain width (768px = small)
+
+            collapsed isn't in the bootstrap.css. It signifies to the bootstrap.js collapse plugin that this button is in a collapsed state (nobody has clicked on it yet, and when it is clicked, the class goes away)
+
+            data-toggle and data-target are HTML5 API attributes that allow Javascript plugins or Javascript code in general to get these attributes easily in a standardized way
+
+            aria-expanded is for screen readers
+          -->
+
+            <span class="sr-only">Toggle navigation</span> 
+            <!-- sr-only means the text never shows up as it is for screen readers -->
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <!-- These 3 .icon-bar spans just add horizontal lines to our button -->
+          </button>
+        </div>
+
+        <div id="collapsable-nav" class="collapse navbar-collapse"> 
+          <!-- 
+            The id allows the data-target attr to target this div.
+            The collapse and navbar-collapse classes are required by bootstrap for this kind of menu
+          -->
+          <ul id="nav-list" class="nav navbar-nav navbar-right">
+            <!-- 
+              We display our menu items using an ul, which is very common practice.
+              We give it an ID so we can target it later for styling
+              
+              nav and navbar-nav means this is a component of our navigation bar
+              
+              navbar-right is similar to pull-right, but specifically for the navbar. It means we want it to be in the navigation bar, but pulled to the right
+            -->
+
+            <li>
+              <a href="menu-categories.html">
+                <span class="glyphicon glyphicon-cutlery"></span>
+                <br class="hidden-xs">
+                Menu
+              </a>
+              <!-- 
+              Each of these li items is going to point to a page in our website, contain the clickable name of the menu (here Menu)
+              
+              glyphicon and glyphicon-cutlery allow us to bring in what's called an icon font, a vector based image that functions the same way a font does (we can size, colorize  it etc), here glyphicon-cutlery gives us a fork/knife icon font.
+              Many of the glyphicon fonts come by default with bootstrap, including this one.
+
+              We're putting a break br between the span and the text, but with a hidden-xs class, meaning we want the break to go away when the screensize is xs.
+              This converts the stacked text and icons to a lined pair.
+              -->
+
+            </li>
+            <li>
+              <a href="#">
+                <span class="glyphicon glyphicon-info-sign"></span> <!--Only the glyphicon family changes-->
+                <br class="hidden-xs">
+                About
+              </a>
+            </li>
+            
+            <li>
+              <a href="#">
+                <span class="glyphicon glyphicon-info-sign"></span> <!--Only the glyphicon family changes-->
+                <br class="hidden-xs">
+                Awards
+              </a>
+            </li>
+            
+            <li id="phone" class="hidden-xs">
+              <a href="tel:410-602-5008"> 
+                <!-- 
+                  This triggers the phone (or desktop software) API to attempt to call onclick 
+                  We also want this whole div to be hidden when screensize is xs.
+                  This because on xs layout, we want the phone number to be part of another element, with complete different styling and positioning
+                -->
+                <span>410-602-5008</span>
+              </a>
+              <div>* We Deliver</div>
+            </li>
+          
+          </ul>
+        </div>        
+      </div>
+    </nav>
+  </header>
+
+  <div id="call-btn" class="visible-xs">
+    <a class="btn" href="tel:410-602-5008">
+      <span class="glyphicon glyphicon-earphone"></span>
+      410-602-5008
+    </a>
+  </div>
+  <div id="xs-deliver" class="text-center visible-xs">* We Deliver *</div>
+
+  <div id="main-content" class="container"> 
+    
+    <h2 id="menu-categories-title" class="text-center">
+        Menu Categories
+    </h2>
+    <div class="text-center">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente reprehenderit voluptate animi, eius ipsam vero similique illum fuga sed magnam atque id et labore veritatis, quisquam temporibus. Quae, mollitia impedit!
+    </div>
+
+    <section class="row">
+        <div class="col-md-3">
+            <a href="single-category.html">
+                <div class="category-tile">
+                    <img width="200" height="200" src="images/menu/B/B.jpg" alt="Lunch">
+                    <span>Lunch</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="single-category.html">
+                <div class="category-tile">
+                    <img width="200" height="200" src="images/menu/B/B.jpg" alt="Lunch">
+                    <span>Lunch</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="single-category.html">
+                <div class="category-tile">
+                    <img width="200" height="200" src="images/menu/B/B.jpg" alt="Lunch">
+                    <span>Lunch</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="single-category.html">
+                <div class="category-tile">
+                    <img width="200" height="200" src="images/menu/B/B.jpg" alt="Lunch">
+                    <span>Lunch</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="single-category.html">
+                <div class="category-tile">
+                    <img width="200" height="200" src="images/menu/B/B.jpg" alt="Lunch">
+                    <span>Lunch</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="single-category.html">
+                <div class="category-tile">
+                    <img width="200" height="200" src="images/menu/B/B.jpg" alt="Lunch">
+                    <span>Lunch</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="single-category.html">
+                <div class="category-tile">
+                    <img width="200" height="200" src="images/menu/B/B.jpg" alt="Lunch">
+                    <span>Lunch</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="single-category.html">
+                <div class="category-tile">
+                    <img width="200" height="200" src="images/menu/B/B.jpg" alt="Lunch">
+                    <span>Lunch</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="single-category.html">
+                <div class="category-tile">
+                    <img width="200" height="200" src="images/menu/B/B.jpg" alt="Lunch">
+                    <span>Lunch</span>
+                </div>
+            </a>
+        </div>
+    </section>
+  </div>  <!-- End of #main-content -->
+
+  <footer class="panel-footer">
+    <div class="container">
+      <div class="row">
+        <section id="hours" class="col-sm-4">
+          <span>Hours</span><br>
+          Sun-Thurs: 11:15am - 10:00pm<br>
+          Fri: 11:15am - 2:30pm<br>
+          Sat: Closed
+          <hr class="visible-xs">
+        </section>
+        <section id="adress" class="col-sm-4">
+          <span>Adress:</span><br>
+          7105 Reistertown Road<br>
+          Baltimore, MD 21215
+          <p>* Delivery area within 3-4 miles, with minimum order of $20 plus $3 charge for all deliveries</p>
+          <hr class="visible-xs">
+        </section>
+        <section id="testimonials" class="col-sm-4">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit voluptatem, voluptatibus?</p>
+        </section>
+      </div>
+      <div class="text-center">&copy; Copyright David Chu's China Bistro 2020</div>
+    </div>
+  </footer>
+
+
+
+
+  <!-- jQuery (Bootstrap JS plugins depend on it) -->
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
